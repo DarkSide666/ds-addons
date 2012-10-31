@@ -12,12 +12,14 @@ INSTALLATION:
 
 USAGE:
     Add path to this addon pack in your Frontend class like this.
+    ```
     $this->pathfinder->addLocation('.',array('addons'=>'ds-addons'));
+    ```
 
 COMPONENTS (add-ons):
-	LISTERS - define new listers, for example, Lister_Tree.
-	MENU    - dropdown menu (horizontal and/or vertical). It relies on LISTERS.
-	GRIDEXT - grid with addExtendedSearch() functionality.
+	* LISTERS - define new listers, for example, Lister_Tree.
+	* MENU    - dropdown menu (horizontal and/or vertical). It relies on LISTERS.
+	* GRIDEXT - grid with addExtendedSearch() functionality.
 
 AUTHOR:
 	Imants Horsts
