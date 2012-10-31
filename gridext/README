@@ -1,0 +1,29 @@
+This add-on will allow you to have extended search form for Grids.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Usage:
+	Use it in Page like this:
+
+	Example with Grid:
+		$g = $page->add('gridext/Grid_Extended');
+		$g->setModel('Example');
+		$g->addExtendedSearch(array('name','salary','is_active','notes'));
+	
+	Example with CRUD:
+		You can use this extended grid with CRUD too:
+		$page->add('gridext/CRUD_Extended');
+
+Known problems:
+	- Not working well together with paginator (quickSearch doesn't do that
+	  either).
+	- If you submit your search form by pressing Enter, then isClicked=false
+	  and submitted() method don't memorize token.
+	- If you have checkbox in your adv.search form and don't check it, then
+	  it's not sent to server on submit and as result is not taken into account
+	  at all in data filtering query. For example, if you have field "is_active"
+	  and you try to filter all records where is_active=false or 0.
+
+Author:
+	Imants Horsts

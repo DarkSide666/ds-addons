@@ -1,0 +1,139 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI Multilevel Menu for ATK4</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+	<script src="jquery.themeswitchertool.js"></script>
+
+    <style>
+        body {font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; font-size: 62.5%; }
+        .nav {display:none;}
+        .cmd {margin-bottom:16px;float:left;}
+
+        /* General */
+        .nav .ui-menu {z-index:999;}
+
+        /* Vertical */
+        .nav-ver .ui-menu {width:120px;}
+
+        /* Horizontal */
+        .nav-hor > .ui-menu {float:left;}
+        .nav-hor > .ui-menu .ui-menu-item {width:120px; float:none; text-align:left;}
+        .nav-hor > .ui-menu > .ui-menu-item {float:left; text-align:center;}
+    </style>
+
+    <script>
+    $(function() {
+        // buttonset for command buttons
+        $(".cmd").buttonset();
+
+        // initialize menu widget
+        initMenu(".nav");
+        
+        // initialize ThemeSwitcher
+        $("#switcher").themeswitcher();
+    });
+
+    function initMenu(selector){
+        var nav = $(selector);
+        var m = nav.children().eq(0);
+
+        // if menu already exists, then refresh it, otherwise - create it
+        if(m.hasClass("ui-menu")) {
+            m.menu('refresh');
+        } else {
+            m.menu({
+                position: {
+                    using: function(pos, e){
+                        var x = $(this).closest(".nav").children(".ui-menu").eq(0);
+                        var ul = x.menu("option","menus");
+
+                        // if horizontal menu, then fix position starting from 2nd level
+                        if(x.parent().hasClass("nav-hor")){
+                            if( $(this).parents(ul).eq(0).is(m) ) {
+                                pos.top = pos.top + e.target.height;
+                                pos.left = pos.left - e.target.width;
+                            }
+                        }
+
+                        $(this).css(pos); // apply position
+                    }
+                }
+            });
+        }
+
+        // fix arrow icon for 1st level elements
+        m.find("> .ui-menu-item > a .ui-menu-icon")
+            .toggleClass("ui-icon-carat-1-e", nav.hasClass("nav-ver"))
+            .toggleClass("ui-icon-carat-1-s", nav.hasClass("nav-hor"));
+   }
+    </script>
+</head>
+<body>
+
+<!-- Title -->
+<h1>jQuery UI Multilevel Menu for ATK4</h1>
+
+<!-- Command buttons -->
+<div class="cmd">
+	<input type="radio" id="dir0" name="dir" onClick="$('.nav').css('float','left');" />
+		<label for="dir0">&lt; Left</label>
+	<input type="radio" id="type0" name="repeat" onClick="$('.nav').removeClass('nav-ver').addClass('nav-hor').show();initMenu('.nav');" />
+		<label for="type0">Horizontal</label>
+	<input type="radio" id="type1" name="repeat" onClick="$('.nav').removeClass('nav-hor').addClass('nav-ver').show();initMenu('.nav');" />
+		<label for="type1">Vertical</label>
+	<input type="radio" id="dir1" name="dir" onClick="$('.nav').css('float','right');" />
+		<label for="dir1">Right &gt;</label>
+</div>
+<div id="switcher" style="float:left;margin-left:16px;"></div>
+<div style="clear:both;"></div>
+
+<!--Plain menu structure for testing -->
+<div class="nav">
+    <ul>
+        <li><a href="#">Nothing special</a></li>
+        <li><a href="#">Select an action</a>
+            <ul>
+                <li><a href="#">Save</a>
+                <ul>
+                    <li><a href="#">Save as default</a></li>
+                    <li><a href="#">Save as...</a></li>
+                    <li><a href="#">Export to</a>
+                    <ul>
+                        <li><a href="#">Microsoft Excel</a>
+                        <li><a href="#">XML</a>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                <li><a href="#">Open...</a>
+                    <ul>
+                        <li><a href="#">From CD</a></li>
+                        <li><a href="#">From DVD</a></li>
+                        <li><a href="#">From USB</a></li>
+                        <li><a href="#">From Desktop</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Close</a></li>
+                <li><a href="#">Delete</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Logout</a>
+            <ul>
+                <li><a href="#">Immediately</a></li>
+                <li><a href="#">Later</a></li>
+                <li><a href="#">Now</a></li>
+                <li><a href="#">Tomorrow</a></li>
+                <li><a href="#">At night</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Help</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

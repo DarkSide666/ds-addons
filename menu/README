@@ -1,0 +1,32 @@
+This add-on will allow you to create hierarcical menus in ATK4 using pure jUI 1.9.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Usage:
+	Use it in Frontend like this:
+	$this->add('menu/Menu_Dropdown',null,'Menu')
+		->setType('horizontal')	// horizontal|vertical (optional)
+		->setPosition('left')	// left|right (optional)
+		->addMenuItem('index','Item 1')
+		->sub()					// <-- goes deeper in hierarchy by 1 level
+			->addMenuItem('item','Item 1.1')
+			->addMenuItem('item','Item 1.2')
+			->sub()
+				->addMenuItem('item','Item 1.2.1')
+				->addMenuItem('item','Item 1.2.2')
+				->sub()
+					->addMenuItem('item','Item 1.2.2.1')
+				->end()
+				->addMenuItem('item','Item 1.2.3')
+			->end()
+			->addMenuItem('item','Item 1.3')
+			->sub()
+				->addMenuItem('item','Item 1.3.1')
+			->end()
+		->end()					// <-- goes back in hierarchy by 1 level
+		->addMenuItem('item','Item 2')
+		...
+
+Author:
+	Imants Horsts

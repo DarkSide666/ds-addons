@@ -1,0 +1,14 @@
+/* General */
+.atk-menu-dropdown .ui-menu {z-index:999;}
+
+/* Vertical */
+.atk-menu-dropdown-ver .ui-menu {width:120px;}
+
+/* Horizontal */
+.atk-menu-dropdown-hor > .ui-menu {float:left;}
+.atk-menu-dropdown-hor > .ui-menu .ui-menu-item {width:120px; float:none; text-align:left;}
+.atk-menu-dropdown-hor > .ui-menu > .ui-menu-item {float:left; text-align:center;}
+
+/* Position */
+.atk-menu-dropdown-left {float:left;}
+.atk-menu-dropdown-right {float:right;}

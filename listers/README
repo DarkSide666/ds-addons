@@ -1,0 +1,44 @@
+This add-on will allow you to have hierarcical lister.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Usage:
+	Use it in Page like this:
+
+		// Array of hashes
+		$l = $this->add('listers/Lister_Tree'); // DON'T USE FIELD NAMED "ID", because it's already built-in Model class as auto-incremental
+		$l->setSource( array(
+			array('ids'=>10,'name'=>'John'),
+			array('ids'=>20,'name'=>'Mary - kid of Joe','parent_id'=>40),
+			array('ids'=>30,'name'=>'Kathy - kid of John','parent_id'=>10),
+			array('ids'=>40,'name'=>'Joe'),
+			array('ids'=>50,'name'=>'Peter - kid of John','parent_id'=>10),
+			array('ids'=>60,'name'=>'Anna','parent_id'=>null),
+			array('ids'=>70,'name'=>'Koko - kid of Kathy','parent_id'=>30),
+			array('ids'=>80,'name'=>'Pako - kid of Kathy','parent_id'=>30),
+		));
+		$l->setRelationFields('ids','parent_id');
+
+		// DSQL
+		$l = $this->add('listers/Lister_Tree');
+		$l->setSource($this->api->db->dsql()
+			->table('ticket_type')
+			->field('*')
+		);
+		$l->setRelationFields('id','parent_id');
+
+		// SQL table
+		$l = $this->add('listers/Lister_Tree');
+		$l->setSource('ticket_type', array('id','name','parent_id'));
+		$l->setRelationFields('id','parent_id');
+
+		// Model
+		$l = $this->add('listers/Lister_Tree');
+		$l->setModel('TicketType');
+		$l->setRelationFields('id','parent_id');
+
+		// If you don't use command setRelationFields(), then it'll work as simple lister.
+
+Author:
+	Imants Horsts
