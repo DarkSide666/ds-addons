@@ -3,8 +3,7 @@
         and it contains multiple addons for ATK4 version 4.2.2.
 -------------------------------------------------------------------------------
 
-+INSTALLATION:+
-
+INSTALLATION:
   Download ds-addons and put it in directory ds-addons in the root of your
   server (near atk4 and atk4-addons, but not inside it). So, you'll end up
   having ds-addons directory right in your root where index.php is located.
@@ -14,9 +13,7 @@
 USAGE:
 
   Add path to this addon pack in your Frontend class like this.
-  ```
   $this->pathfinder->addLocation('.',array('addons'=>'ds-addons'));
-  ```
 
 COMPONENTS (add-ons):
  * LISTERS - define new listers, for example, Lister_Tree.
