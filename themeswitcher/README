@@ -1,0 +1,11 @@
+This add-on will allow you to add View_ThemeSwitcher widget.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Usage:
+	Use it in Frontend like this:
+	$this->add('themeswitcher/View_ThemeSwitcher');
+
+Author:
+	Imants Horsts

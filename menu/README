@@ -5,6 +5,8 @@ Installation:
 
 Usage:
 	Use it in Frontend like this:
+
+	// Populated old-style with items one by one
 	$this->add('menu/Menu_Dropdown',null,'Menu')
 		->setType('horizontal')	// horizontal|vertical (optional)
 		->setPosition('left')	// left|right (optional)
@@ -25,8 +27,42 @@ Usage:
 				->addMenuItem('item','Item 1.3.1')
 			->end()
 		->end()					// <-- goes back in hierarchy by 1 level
-		->addMenuItem('item','Item 2')
-		...
+		->addMenuItem('item','Item 2');
+
+	Or you can populate it using Array, DSQL, SQL table and Model too, like this:
+
+	// Populated by Array
+	$this->add('menu/Menu_Dropdown')
+		->setSource(array(
+			array('ids'=>10,'page'=>'p1',	'name'=>'page 1'),
+			array('ids'=>20,'page'=>'p4/2',	'name'=>'page 2',	'parent_id'=>40),
+			array('ids'=>30,'page'=>'p1/3',	'name'=>'page 3',	'parent_id'=>10),
+			array('ids'=>40,'page'=>'p4',	'name'=>'page 4'),
+			array('ids'=>50,'page'=>'p1/5',	'name'=>'page 5',	'parent_id'=>10),
+			array('ids'=>60,'page'=>'p6',	'name'=>'page 6',	'parent_id'=>null),
+			array('ids'=>70,'page'=>'p1/3/7','name'=>'page 7',	'parent_id'=>30),
+			array('ids'=>80,'page'=>'p1/3/8','name'=>'page 8',	'parent_id'=>30),
+		))
+		->setRelationFields('ids','parent_id');
+
+	// Populated by DSQL
+	$this->add('menu/Menu_Dropdown')
+		->setSource(
+			$this->api->db->dsql()
+				->table('ticket_type')
+				->field('*')
+		)
+		->setRelationFields('id','parent_id');
+
+	// Populated by SQL table
+	$this->add('menu/Menu_Dropdown')
+		->setSource('ticket_type', array('id','name','parent_id'))
+		->setRelationFields('id','parent_id');
+
+	// Populated by Model
+	$this->add('menu/Menu_Dropdown')
+		->setRelationFields('id','parent_id')
+		->setModel('menu/TicketType');
 
 Author:
 	Imants Horsts

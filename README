@@ -17,6 +17,7 @@ USAGE:
 COMPONENTS (add-ons):
  * LISTERS - define new listers, for example, Lister_Tree.
  * MENU    - dropdown menu (horizontal and/or vertical). It relies on LISTERS.
+ * THEMESWITCHER - jQuery UI themeswitcher widget.
  * GRIDEXT - grid with addExtendedSearch() functionality.
 
 AUTHOR:
