@@ -62,6 +62,11 @@ class Menu_Dropdown extends \listers\Lister_Tree{
 			$this->pos=$a;
 		return $this;
 	}
+	// set width of menu items
+	function setWidth($a){
+		$this->options['width']=$a;
+		return $this;
+	}
 
 	// remember if we're using external source or Model
 	function setSource($source,$fields=null){

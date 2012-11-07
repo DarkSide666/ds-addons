@@ -29,6 +29,8 @@ $.each({
                 	}
             	}
 			},options));
+			
+			if(options.width) $(".ui-menu-item",m).css("width",options.width);
 
 		}
 
