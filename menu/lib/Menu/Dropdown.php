@@ -21,8 +21,8 @@ class Menu_Dropdown extends \listers\Lister_Tree{
     protected $template_file='menu_dropdown';
     
     /** <li> element classes */
-    protected $default_class='ui-state-default'; // default
-    protected $current_class='ui-state-active'; // active
+    //protected $default_class='ui-state-default'; // default
+    //protected $current_class='ui-state-active'; // active
     
     /** Container CSS classes */
     protected $type_class=array('horizontal'=>'atk-menu-dropdown-hor','vertical'=>'atk-menu-dropdown-ver'); // menu container classes
