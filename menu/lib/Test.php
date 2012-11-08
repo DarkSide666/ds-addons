@@ -1,6 +1,6 @@
 <?php
 namespace menu;
-class page_Tests extends \Page{
+class Test extends \View{
 	function init(){
 		parent::init();
 		
@@ -101,16 +101,6 @@ class page_Tests extends \Page{
         // Menu 6 - populated by Model
         $m6 = $t6->add('menu/Menu_Dropdown')
 			->setRelationFields('id','parent_id')
-        	->setModel('menu/TicketType');
-	}
-}
-
-
-class Model_TicketType extends \Model_Table {
-	public $table = 'ticket_type';
-	function init(){
-		parent::init();
-		$this->addField('name');
-		$this->addField('parent_id');
+        	->setModel('tests/TicketType');
 	}
 }

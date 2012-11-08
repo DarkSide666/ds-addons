@@ -19,6 +19,7 @@ COMPONENTS (add-ons):
  * MENU    - dropdown menu (horizontal and/or vertical). It relies on LISTERS.
  * THEMESWITCHER - jQuery UI themeswitcher widget.
  * GRIDEXT - grid with addExtendedSearch() functionality.
+ * TESTS   - test page for all DS Addons components.
 
 AUTHOR:
   Imants Horsts

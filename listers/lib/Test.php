@@ -1,6 +1,6 @@
 <?php
 namespace listers;
-class page_Tests extends \Page{
+class Test extends \View{
 	function init(){
 		parent::init();
 		
@@ -52,7 +52,7 @@ class page_Tests extends \Page{
 		// Model
 		$c1->add('H4')->set('Model');
 		$l = $c1->add('listers/Lister_Tree');
-		$l->setModel('listers/TicketType');
+		$l->setModel('tests/TicketType');
 		// --------------------------------------------------------------------
 		// Associative array
 		$c2->add('H4')->set('Associative array')
@@ -92,16 +92,7 @@ class page_Tests extends \Page{
 		// Model
 		$c2->add('H4')->set('Model');
 		$l = $c2->add('listers/Lister_Tree');
-		$l->setModel('listers/TicketType');
+		$l->setModel('tests/TicketType');
 		$l->setRelationFields('id','parent_id');
-	}
-}
-
-class Model_TicketType extends \Model_Table {
-	public $table = 'ticket_type';
-	function init(){
-		parent::init();
-		$this->addField('name');
-		$this->addField('parent_id');
 	}
 }
