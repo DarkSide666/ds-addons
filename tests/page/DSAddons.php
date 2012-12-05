@@ -9,6 +9,8 @@ class page_DSAddons extends \Page{
 		$t->addTabURL($this->api->url('./menu'),'Menu');
 		$t->addTabURL($this->api->url('./listers'),'Listers');
 		$t->addTabURL($this->api->url('./gridext'),'Grid Extended');
+		$t->addTabURL($this->api->url('./cronexpression'),'CronExpression');
+		$t->addTabURL($this->api->url('./querypath'),'QueryPath');
 	}
 	
 	function page_themeswitcher(){
@@ -22,5 +24,11 @@ class page_DSAddons extends \Page{
 	}
 	function page_gridext(){
         $this->add('gridext\Test','gridext_test');
+	}
+	function page_cronexpression(){
+        $this->add('CronExpression\Test','cronexpression_test');
+	}
+	function page_querypath(){
+        $this->add('QueryPath\Test','querypath_test');
 	}
 }

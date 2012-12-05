@@ -3,6 +3,9 @@ This add-on contain test page of all DS-Addons components.
 Installation:
     Check readme file of ds-addons pack.
 
+Dependencies:
+    all addons from this addon pack
+
 Usage:
     Create page in your /page folder and extend it like this:
     class page_something extends \tests\page_DSAddons{}

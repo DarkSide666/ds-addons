@@ -15,11 +15,16 @@ USAGE:
   $this->pathfinder->addLocation('.',array('addons'=>'ds-addons'));
 
 COMPONENTS (add-ons):
- * LISTERS - define new listers, for example, Lister_Tree.
- * MENU    - dropdown menu (horizontal and/or vertical). It relies on LISTERS.
- * THEMESWITCHER - jQuery UI themeswitcher widget.
- * GRIDEXT - grid with addExtendedSearch() functionality.
- * TESTS   - test page for all DS Addons components.
+ * --------------
+ * Listers        - define new listers, for example, Lister_Tree.
+ * Menu           - dropdown menu (horizontal and/or vertical).
+ * ThemeSwitcher  - jQuery UI themeswitcher widget.
+ * GridExt        - frid with addExtendedSearch() functionality.
+ * CronExpression - cron expression parser.
+ * QueryPath      - integration of QueryPath (XPath searching and much more).
+ * --------------
+ * Tests          - test page for all DS Addons components.
+ * --------------
 
 AUTHOR:
   Imants Horsts

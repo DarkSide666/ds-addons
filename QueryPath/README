@@ -1,0 +1,38 @@
+This add-on allow you to manipulate XML and HTML.
+It's implementation of http://querypath.org/ in ATK4.
+For more information about this great piece of software check
+QueryPath homepage http://querypath.org/.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Dependencies:
+    none
+
+Usage:
+    Use it anywhere like this:
+
+	$qp = $this->add('QueryPath/Loader')->htmlqp();
+    $foo = $qp->xpath('//table[@id="tbl_proxy_list"]/tbody[1]/tr/td[@data-proxy-ip]');
+    
+    or
+    
+    // Begin with an HTML stub document (XHTML, actually), and navigate to the title.
+    $qp_loader = $this->add('QueryPath/Loader');
+    $html = $qp_loader->qp(\QueryPath::HTML_STUB, 'title')
+        // Add some text to the title
+        ->text('Example of QueryPath.')
+        // Now look for the <body> element
+        ->find(':root body')
+        // Inside the body, add a title and paragraph.
+        ->append('<h1>This is a test page</h1><p>Test text</p>')
+        // Return HTML
+        ->find(':root')->html();
+    
+    or use any QueryPath functionality you desire.
+
+    More info about all possible functions and usecases you can find
+    here: http://querypath.org/
+
+Author:
+    Imants Horsts

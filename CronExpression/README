@@ -1,0 +1,23 @@
+This add-on allow you to work with Cron expressions.
+It's implementation of https://github.com/mtdowling/cron-expression in ATK4.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Dependencies:
+    none
+
+Usage:
+    Use it anywhere like this:
+
+	$cron = $this->add('CronExpression/Loader')->factory('* 15 * * *');
+    $last_time = $cron->getPreviousRunDate()->format('Y-m-d H:i:s');
+	$next_time = $cron->getNextRunDate()->format('Y-m-d H:i:s');
+
+    Advanced expressions like "3-59/15 2,6-12 */15 1 2-5" also works!
+
+    More info about all possible functions and usecases you can find
+    here: http://mtdowling.com/blog/2012/06/03/cron-expressions-in-php/
+
+Author:
+    Imants Horsts

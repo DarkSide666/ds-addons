@@ -3,6 +3,9 @@ This add-on will allow you to have hierarcical lister.
 Installation:
     Check readme file of ds-addons pack.
 
+Dependencies:
+	none
+
 Usage:
 	Use it in Page like this:
 

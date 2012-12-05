@@ -3,6 +3,9 @@ This add-on will allow you to create hierarcical menus in ATK4 using pure jUI 1.
 Installation:
     Check readme file of ds-addons pack.
 
+Dependencies:
+	ds-addons/Listers
+
 Usage:
 	Use it in Frontend like this:
 

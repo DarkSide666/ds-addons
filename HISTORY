@@ -1,1 +1,9 @@
 1.0 Initial release
+    - new Listers
+    - new Menu
+    - new ThemeSwitcher
+    - new GridExt
+    - new Tests
+1.1 Release
+    - new CronExpression (integration of Cron-Expression)
+    - new QueryPath (integration of QueryPath)
