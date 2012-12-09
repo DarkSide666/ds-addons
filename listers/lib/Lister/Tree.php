@@ -93,7 +93,6 @@ class Lister_Tree extends \View {
         // Set Array as a data source
         if(is_array($source)){
             $m=$this->setModel('Model',$fields);
-
             if(is_array(reset($source))){
                 $m->setSource('Array',$source);
             }else{
@@ -159,7 +158,6 @@ class Lister_Tree extends \View {
 
     /** Start pre-rendering */
     function preRender($obj=null, $enclosure=null, $parent_id=undefined){
-        
         // prepare data
         $this->prepareData();
 

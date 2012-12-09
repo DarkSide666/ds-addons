@@ -50,7 +50,6 @@ class Test extends \View{
             ->addMenuItem('item','Item 5')					// 18
             ->addMenuItem('item','Item 6')					// 19
             ;
-
         // Menu 2 - vertical
         $m2 = $t2->add('menu/Menu_Dropdown')
 			->setType('vertical')	// horizontal|vertical
@@ -102,5 +101,6 @@ class Test extends \View{
         $m6 = $t6->add('menu/Menu_Dropdown')
 			->setRelationFields('id','parent_id')
         	->setModel('tests/TicketType');
+	
 	}
 }

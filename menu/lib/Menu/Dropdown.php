@@ -85,7 +85,6 @@ class Menu_Dropdown extends \listers\Lister_Tree{
     
     // preRender
 	function preRender(){
- 
 		// setSource if it's not already set externally
 		if(!$this->_ext_source){
 			$this->setSource($this->pages);

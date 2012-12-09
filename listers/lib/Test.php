@@ -53,6 +53,7 @@ class Test extends \View{
 		$c1->add('H4')->set('Model');
 		$l = $c1->add('listers/Lister_Tree');
 		$l->setModel('tests/TicketType');
+
 		// --------------------------------------------------------------------
 		// Associative array
 		$c2->add('H4')->set('Associative array')
@@ -94,5 +95,6 @@ class Test extends \View{
 		$l = $c2->add('listers/Lister_Tree');
 		$l->setModel('tests/TicketType');
 		$l->setRelationFields('id','parent_id');
+
 	}
 }
