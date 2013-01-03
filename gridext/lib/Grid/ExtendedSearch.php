@@ -1,8 +1,9 @@
 <?php
 /**
- * ExtendedSearch represents many-field filter which works perfectly with a grid
+ * ExtendedSearch represents many-field filter
  */
-namespace gridext;
+namespace GridExt;
+
 class Grid_ExtendedSearch extends \Filter {
 	
 	public $fields = array();		// DB fields to show in search form
@@ -35,7 +36,7 @@ class Grid_ExtendedSearch extends \Filter {
 		if($this->recall($this->token)) {
 			$this->hide_on_load = false;
 			$this->bt->addClass('ui-state-active');
-			//$this->bt->removeClass('ui-state-default'); // this don't work because ui-state-default is hard-coded into ATK4 buttons
+			//$this->bt->removeClass('ui-state-default'); // this don't work because ui-state-default is hard-coded into ATK buttons
 			$this->bt->addStyle(array('font-weight'=>'bold')); // highlight button when enabled
 		}
 		

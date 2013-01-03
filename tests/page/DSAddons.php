@@ -5,10 +5,10 @@ class page_DSAddons extends \Page{
 		parent::init();
 		$this->add('H2')->set('DS-Addons');
 		$t = $this->add('Tabs');
+		$t->addTabURL($this->api->url('./gridext'),'Grid Extended');
 		$t->addTabURL($this->api->url('./themeswitcher'),'ThemeSwitcher');
 		$t->addTabURL($this->api->url('./menu'),'Menu');
 		$t->addTabURL($this->api->url('./listers'),'Listers');
-		$t->addTabURL($this->api->url('./gridext'),'Grid Extended');
 		$t->addTabURL($this->api->url('./cronexpression'),'CronExpression');
 		$t->addTabURL($this->api->url('./querypath'),'QueryPath');
 	}
@@ -23,7 +23,7 @@ class page_DSAddons extends \Page{
         $this->add('listers\Test','listers_test');
 	}
 	function page_gridext(){
-        $this->add('gridext\Test','gridext_test');
+        $this->add('GridExt\Test','gridext_test');
 	}
 	function page_cronexpression(){
         $this->add('CronExpression\Test','cronexpression_test');

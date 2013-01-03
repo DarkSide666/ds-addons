@@ -7,3 +7,9 @@
 1.1 Release
     - new CronExpression (integration of Cron-Expression)
     - new QueryPath (integration of QueryPath)
+    - new Scheduler (powerful self-made Cron job scheduler)
+    - multiple fixes in most add-ons
+    - new features for GridExt, like
+        - addToolbar()
+        - addActionToolbar()
+    

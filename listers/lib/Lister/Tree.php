@@ -62,11 +62,11 @@ class Lister_Tree extends \View {
      *   $l->setRelationFields('id','parent_id');
      *
      *   // SQL table
-     *   $l->setSource('ticket_type', array('id','name','parent_id'));
+     *   $l->setSource('tmp_test', array('id','name','parent_id'));
      *   $l->setRelationFields('id','parent_id');
      *
      *   // Model
-     *   $l->setModel('TicketType');
+     *   $l->setModel('Test');
      *   $l->setRelationFields('id','parent_id');
      *
      **/

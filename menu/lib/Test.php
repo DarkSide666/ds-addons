@@ -87,20 +87,20 @@ class Test extends \View{
         $m4 = $t4->add('menu/Menu_Dropdown')
 			->setSource(
 				$this->api->db->dsql()
-     	       		->table('ticket_type')
+     	       		->table('tmp_test')
             		->field('*')
             )
 			->setRelationFields('id','parent_id');
 
         // Menu 5 - populated by SQL table
         $m5 = $t5->add('menu/Menu_Dropdown')
-			->setSource('ticket_type', array('id','name','parent_id'))
+			->setSource('tmp_test', array('id','name','parent_id'))
 			->setRelationFields('id','parent_id');
 
         // Menu 6 - populated by Model
         $m6 = $t6->add('menu/Menu_Dropdown')
 			->setRelationFields('id','parent_id')
-        	->setModel('tests/TicketType');
+        	->setModel('tests/Test');
 	
 	}
 }

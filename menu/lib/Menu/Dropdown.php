@@ -80,7 +80,7 @@ class Menu_Dropdown extends \listers\Lister_Tree{
 
     // formatRow hook
     function formatRow(){
-    	$this->current_row['href'] = $this->api->url($this->current_row['page']);
+        $this->current_row['href'] = $this->current_row['page'] ? $this->api->url($this->current_row['page']) : '#';
     }
     
     // preRender

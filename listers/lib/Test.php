@@ -5,8 +5,8 @@ class Test extends \View{
 		parent::init();
 		
         $cols = $this->add('Columns');
-        $c1 = $cols->addColumn();
-        $c2 = $cols->addColumn();
+        $c1 = $cols->addColumn(6);
+        $c2 = $cols->addColumn(6);
         $c1->add('H2')->set('Simple Lister');
         $c2->add('H2')->set('Tree Lister');
 
@@ -40,19 +40,19 @@ class Test extends \View{
 		$c1->add('H4')->set('DSQL');
 		$l = $c1->add('listers/Lister_Tree');
 		$l->setSource( $this->api->db->dsql()
-			->table('ticket_type')
+			->table('tmp_test')
 			->field('*')
 		);
 		
 		// SQL table
 		$c1->add('H4')->set('SQL table');
 		$l = $c1->add('listers/Lister_Tree');
-		$l->setSource('ticket_type', array('id','name','parent_id'));
+		$l->setSource('tmp_test', array('id','name','parent_id'));
 		
 		// Model
 		$c1->add('H4')->set('Model');
 		$l = $c1->add('listers/Lister_Tree');
-		$l->setModel('tests/TicketType');
+		$l->setModel('tests/Test');
 
 		// --------------------------------------------------------------------
 		// Associative array
@@ -79,7 +79,7 @@ class Test extends \View{
 		$c2->add('H4')->set('DSQL');
 		$l = $c2->add('listers/Lister_Tree');
 		$l->setSource($this->api->db->dsql()
-			->table('ticket_type')
+			->table('tmp_test')
 			->field('*')
 		);
 		$l->setRelationFields('id','parent_id');
@@ -87,13 +87,13 @@ class Test extends \View{
 		// SQL table
 		$c2->add('H4')->set('SQL table');
 		$l = $c2->add('listers/Lister_Tree');
-		$l->setSource('ticket_type', array('id','name','parent_id'));
+		$l->setSource('tmp_test', array('id','name','parent_id'));
 		$l->setRelationFields('id','parent_id');
 
 		// Model
 		$c2->add('H4')->set('Model');
 		$l = $c2->add('listers/Lister_Tree');
-		$l->setModel('tests/TicketType');
+		$l->setModel('tests/Test');
 		$l->setRelationFields('id','parent_id');
 
 	}

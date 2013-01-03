@@ -26,19 +26,19 @@ Usage:
 		// DSQL
 		$l = $this->add('listers/Lister_Tree');
 		$l->setSource($this->api->db->dsql()
-			->table('ticket_type')
+			->table('tmp_test')
 			->field('*')
 		);
 		$l->setRelationFields('id','parent_id');
 
 		// SQL table
 		$l = $this->add('listers/Lister_Tree');
-		$l->setSource('ticket_type', array('id','name','parent_id'));
+		$l->setSource('tmp_test', array('id','name','parent_id'));
 		$l->setRelationFields('id','parent_id');
 
 		// Model
 		$l = $this->add('listers/Lister_Tree');
-		$l->setModel('TicketType');
+		$l->setModel('Test');
 		$l->setRelationFields('id','parent_id');
 
 		// If you don't use command setRelationFields(), then it'll work as simple lister.

@@ -1,0 +1,23 @@
+/* TOOLBAR */
+.gridext-toolbar {float:left;width:100%;border:1px dotted red;}
+.gridext-toolbar .ui-button {font-size:0.85em;} /* small buttons */
+
+
+
+/* ACTION TOOLBAR */
+
+/* buttons */
+.gridext-action-toolbar .ui-buttonset {float:left;margin:0.2em 0.4em !important;border:1px solid transparent;/*without fake border, margins don't work at least in Chrome*/}
+
+/* X items selected */
+.gridext-action-toolbar .info {float:left;margin:0.4em 0.4em;}
+.gridext-action-toolbar .info > .count {font-weight:bold;}
+
+/* form */
+.gridext-action-toolbar .atk-form {float:right;margin:0.2em 0.4em;}
+.gridext-action-toolbar .atk-form * {float:left;}
+.gridext-action-toolbar .atk-form fieldset .atk-form-row {margin:0;}
+.gridext-action-toolbar .atk-form fieldset .atk-form-row > label {width:auto;margin-top:0.2em;}
+.gridext-action-toolbar .atk-form fieldset .atk-form-row > .atk-form-field {margin-left: 0.5em;}
+.gridext-action-toolbar .atk-form .atk-buttons {border:0;margin:0;padding:0 0 0 0.5em;}
+.gridext-action-toolbar .atk-form fieldset .atk-form-row > .atk-form-field select {margin-top:0.2em;}

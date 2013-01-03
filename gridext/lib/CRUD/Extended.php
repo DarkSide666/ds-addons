@@ -1,5 +1,9 @@
 <?php
-namespace gridext;
+namespace GridExt;
+
 class CRUD_Extended extends \CRUD {
-	public $grid_class='gridext/Grid_Extended';
+	function init(){
+        $this->grid_class=__NAMESPACE__ . '/Grid_Extended';
+        parent::init();
+	}
 }

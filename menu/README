@@ -52,20 +52,20 @@ Usage:
 	$this->add('menu/Menu_Dropdown')
 		->setSource(
 			$this->api->db->dsql()
-				->table('ticket_type')
+				->table('tmp_test')
 				->field('*')
 		)
 		->setRelationFields('id','parent_id');
 
 	// Populated by SQL table
 	$this->add('menu/Menu_Dropdown')
-		->setSource('ticket_type', array('id','name','parent_id'))
+		->setSource('tmp_test', array('id','name','parent_id'))
 		->setRelationFields('id','parent_id');
 
 	// Populated by Model
 	$this->add('menu/Menu_Dropdown')
 		->setRelationFields('id','parent_id')
-		->setModel('menu/TicketType');
+		->setModel('tests/Test');
 
 Author:
 	Imants Horsts

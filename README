@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
         This is ATK4 addons pack made by Imants (aka. DarkSide)
-        and it contains multiple addons for ATK4 version 4.2.2.
+        and it contains multiple addons for ATK4 version 4.2.3.
 -------------------------------------------------------------------------------
 
 INSTALLATION:
@@ -19,9 +19,10 @@ COMPONENTS (add-ons):
  * Listers        - define new listers, for example, Lister_Tree.
  * Menu           - dropdown menu (horizontal and/or vertical).
  * ThemeSwitcher  - jQuery UI themeswitcher widget.
- * GridExt        - frid with addExtendedSearch() functionality.
- * CronExpression - cron expression parser.
+ * GridExt        - grid with more features.
+ * CronExpression - integration of Cron expression parser.
  * QueryPath      - integration of QueryPath (XPath searching and much more).
+ * Scheduler      - complete implementation of Cron job scheduler.
  * --------------
  * Tests          - test page for all DS Addons components.
  * --------------

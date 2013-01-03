@@ -1,0 +1,40 @@
+This add-on is a complete and quite powerful implementation of Cron job scheduler for ATK4
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Dependencies:
+    ds-addons/CronExpression
+
+Usage:
+    1) Create scheduler database tables using SQL scripts found in /dbupdates.
+    
+    2) Create Scheduler admin page in your /page folder like this:
+        class page_scheduler extends Scheduler\Page_Admin {}
+    
+    3) Create heartbeat.php in your root directory. It's where your index.php file is located.
+        Put the following in this file:
+        
+        include 'atk4/loader.php';
+        $api=new ApiCLI('hb');
+        $api->pathfinder->addLocation('.',array('addons'=>'ds-addons'));
+        $hb=$api->add('Scheduler/Heartbeat');
+        $hb->execute();
+    
+    3) Create "hearbeat" cron job (Linux) or scheduler task (Windows). It should run script heartbeat.php created above in PHP CLI mode.
+        Linux cronTab:
+            http://www.cyberciti.biz/faq/howto-setup-php-script-as-cronjob/
+        Windows Scheduler:
+            Run: wscript.exe "ds-addons/Scheduler/tools/invisible.vbs" "ds-addons/Scheduler/tools/heartbweat.cmd"
+            Start-in: directory where your heartbeat.php file is located.
+            Schedule: set as you wish, but it should execute more often that your most active task. I prefer 1-5 minutes interval.
+
+    4) Configure your scheduler using scheduler admin page:
+    4a) Set scheduler global settings in "Config" tab.
+        //Important is, that you set "Heartbeat time" to exactly the same value (in minutes) what scheduled in your cron tab or Windows task scheduler.
+    4b) Create Tasks.
+    
+    5) Test it.
+
+Author:
+    Imants Horsts
