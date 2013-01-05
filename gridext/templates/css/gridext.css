@@ -1,5 +1,18 @@
 /* TOOLBAR */
-.gridext-toolbar {float:left;width:100%;border:1px dotted red;}
+.gridext-toolbar {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    float:left;
+    width:100%;
+    background:#F0F5FA;
+    border:1px solid #002D5E;
+    border-width:1px 1px 0 1px;
+    border-collapse:collapse;
+}
 .gridext-toolbar .ui-button {font-size:0.85em;} /* small buttons */
 
 
