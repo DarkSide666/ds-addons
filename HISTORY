@@ -12,4 +12,6 @@
     - new features for GridExt, like
         - addToolbar()
         - addActionToolbar()
-    
+1.2 Release
+    - new RollingCURL
+    - multiple fixes

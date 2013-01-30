@@ -5,6 +5,7 @@ class page_DSAddons extends \Page{
 		parent::init();
 		$this->add('H2')->set('DS-Addons');
 		$t = $this->add('Tabs');
+		$t->addTabURL($this->api->url('./rollingcurl'),'Rolling CURL');
 		$t->addTabURL($this->api->url('./gridext'),'Grid Extended');
 		$t->addTabURL($this->api->url('./themeswitcher'),'ThemeSwitcher');
 		$t->addTabURL($this->api->url('./menu'),'Menu');
@@ -30,5 +31,8 @@ class page_DSAddons extends \Page{
 	}
 	function page_querypath(){
         $this->add('QueryPath\Test','querypath_test');
+	}
+	function page_rollingcurl(){
+        $this->add('RollingCurl\Test','rollingcurl_test');
 	}
 }

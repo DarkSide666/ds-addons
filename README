@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
         This is ATK4 addons pack made by Imants (aka. DarkSide)
-        and it contains multiple addons for ATK4 version 4.2.3.
+        and it contains multiple addons for ATK4 version 4.2.4.
 -------------------------------------------------------------------------------
 
 INSTALLATION:
@@ -23,9 +23,11 @@ COMPONENTS (add-ons):
  * CronExpression - integration of Cron expression parser.
  * QueryPath      - integration of QueryPath (XPath searching and much more).
  * Scheduler      - complete implementation of Cron job scheduler.
+ * RollingCurl    - almost multi-threading CURL implementation.
  * --------------
  * Tests          - test page for all DS Addons components.
  * --------------
 
 AUTHOR:
   Imants Horsts
+  (aka. DarkSide666)

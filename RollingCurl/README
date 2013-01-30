@@ -1,0 +1,23 @@
+This add-on will allow you to make almost multi-threading CURL calls.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Dependencies:
+	none
+
+Usage:
+	Use it in API or View like this:
+    ...
+
+
+Known problems:
+    none
+    
+Credits:
+    Initially based on Rolling-CURL library:
+        http://code.google.com/p/rolling-curl/
+        https://github.com/LionsAd/rolling-curl
+
+Author:
+	Imants Horsts

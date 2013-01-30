@@ -13,6 +13,14 @@
     border-width:1px 1px 0 1px;
     border-collapse:collapse;
 }
+.gridext-toolbar:first-child{
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-top-left-radius: 2px;
+    -moz-border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
 .gridext-toolbar .ui-button {font-size:0.85em;} /* small buttons */
 
 

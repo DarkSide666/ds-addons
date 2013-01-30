@@ -5,6 +5,7 @@ class Model_Test extends \Model_Table {
 	function init(){
 		parent::init();
 		$this->addField('name')->sortable(true);
+		$this->addField('price')->type('money');
 		$this->addField('parent_id');
 		
 		// add auto DB creator addon
@@ -16,7 +17,9 @@ class Model_Test extends \Model_Table {
 	// This can lead to unpredictable results
 	function insertData($delete=false){
         // delete current records
-        if($delete)$this->_dsql()->delete();
+        if($delete) {
+            $this->deleteAll();
+        }
         
         // insert new records
         if(!$this->count()->getOne()){
@@ -25,6 +28,7 @@ class Model_Test extends \Model_Table {
                     $id=($i-1)*$j_max+$j;
                     $this->set('id',$id);
                     $this->set('name',"Name [$i,$j]");
+                    $this->set('price',rand(-500,1000)/100);
                     $this->set('parent_id',$i==1?null:$i);
                     $this->saveAndUnload();
                 }
