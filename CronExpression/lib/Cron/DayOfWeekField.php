@@ -33,19 +33,15 @@ class DayOfWeekField extends AbstractField
         }
 
         // Convert text day of the week values to integers
-        $value = strtr($value, array(
-            'SUN' => 0,
-            'MON' => 1,
-            'TUE' => 2,
-            'WED' => 3,
-            'THU' => 4,
-            'FRI' => 5,
-            'SAT' => 6
-        ));
+        $value = str_ireplace(
+            array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'),
+            range(0, 6),
+            $value
+        );
 
         $currentYear = $date->format('Y');
         $currentMonth = $date->format('m');
-        $lastDayOfMonth = DayOfMonthField::getLastDayOfMonth($date);
+        $lastDayOfMonth = $date->format('t');
 
         // Find out if this is the last specific weekday of the month
         if (strpos($value, 'L')) {
@@ -114,10 +110,10 @@ class DayOfWeekField extends AbstractField
     public function increment(DateTime $date, $invert = false)
     {
         if ($invert) {
-            $date->sub(new DateInterval('P1D'));
-            $date->setTime(23, 59, 0);
+            $date->modify('-1 day');
+            $date->setTime(23, 59, 0);    
         } else {
-            $date->add(new DateInterval('P1D'));
+            $date->modify('+1 day');
             $date->setTime(0, 0, 0);
         }
 
