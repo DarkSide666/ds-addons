@@ -11,11 +11,11 @@ class Controller_Grid_Format_JobMessages extends \AbstractController {
         
         $g->js(true)->_selector('#'.$g->name.' .button_'.$field)
             ->addClass('bar-lightgray')->css('cursor','pointer');
-            
+        
         $g->js('click')->_selector('#'.$g->name.' .button_'.$field)
             ->univ()
-            ->frameURL($description,array($this->api->url($this->page),
-                $g->model->id_field=>$g->js()
+            ->frameURL($description['descr'], array($this->api->url($this->page),
+                $g->model->id_field => $g->js()
                     ->_selectorThis()
                     ->closest('tr')
                     ->attr('data-id')

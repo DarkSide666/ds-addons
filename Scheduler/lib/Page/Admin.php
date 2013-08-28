@@ -83,7 +83,7 @@ class Page_Admin extends \Page{
         $m->tryLoad($_GET['id']);
         // Create HTML element
         $field = $this->add('HtmlElement')->setElement('pre');
-        $field->set($m['messages']?:'No messages');
+        $field->setHTML($m['messages']?:'No messages');
         // Enforce rendering only of this object
         $_GET['cut_object']=$field->name;
 	}

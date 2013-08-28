@@ -30,11 +30,38 @@ Usage:
             Schedule: set as you wish, but it should execute more often that your most active task. I prefer 1-5 minutes interval.
 
     4) Configure your scheduler using scheduler admin page:
-    4a) Set scheduler global settings in "Config" tab.
-        //Important is, that you set "Heartbeat time" to exactly the same value (in minutes) what scheduled in your cron tab or Windows task scheduler.
+    4a) Change scheduler global settings (if any) in "Config" tab.
     4b) Create Tasks.
     
     5) Test it.
+
+Example:
+    You can create your Job Controller class like this:
+    
+    ```
+    class Controller_SchedulerJobs extends AbstractController {
+
+        /**
+         * Test example
+         * 
+         * @param Scheduler/Model_Scheduler_Job $job
+         * 
+         * @return boolean True on success, false on error
+         */
+        function test_example($job){
+            echo "This text is visible only in log file\n";
+            echo "but not saved in DB and will not show up in web interface\n";
+            
+            $job->addMessage('This message is visible only on web interface');
+            $job->addMessage('and is saved in DB.');
+            $job->addMessage('You can use HTML <b>bold</b> and <i>italic</i> and other tags too.');
+            
+            return true; // success
+        }
+    }
+    ```
+    
+    In this case Class will be ```Controller_SchedulerJobs``` and Action will be ```test_example```.
 
 Author:
     Imants Horsts

@@ -4,11 +4,16 @@ namespace Scheduler;
 class Model_Scheduler_Job extends \Model_Table {
 	public $table = 'scheduler_job';
 
-	function init(){
+	/**
+	 * Define structure of model
+	 *
+	 * @return void
+	 */
+    function init(){
 		parent::init();
 		
 		// hasOne relations
-		$this->hasOne(__NAMESPACE__ . '/Scheduler_Task','scheduler_task_id')->caption('Task')->sortable(true);
+		$this->hasOne(__NAMESPACE__ . '/Scheduler_Task', 'scheduler_task_id')->caption('Task')->sortable(true);
 		
 		// Fields
 		$this->addField('created_dts')->type('datetime')->caption('Created')
@@ -22,14 +27,18 @@ class Model_Scheduler_Job extends \Model_Table {
         $this->addField('messages')->type('text');
         
 		// Order
-		$this->setOrder('scheduled_dts','desc');
-		$this->setOrder('created_dts','desc');
+		$this->setOrder('scheduled_dts', 'desc');
+		$this->setOrder('created_dts', 'desc');
 
 		// Hooks
-		$this->addHook('beforeSave',$this);
+		$this->addHook('beforeSave', $this);
 	}
 
-	// Hooks
+	/**
+	 * Set hooks
+	 *
+	 * @return void
+	 */
 	function beforeSave(){
         if($this['finished_dts']){
             $s = $this['status']=='error' ? 'error' : 'success';
@@ -40,10 +49,38 @@ class Model_Scheduler_Job extends \Model_Table {
         }
         $this->set('status',$s);
 	}
+	
+	/**
+	 * Adds message to Jobs messages
+	 *
+	 * @param string $message
+	 *
+	 * @return $this
+	 */
+    function addMessage($message) {
+        $msg = $this->get('messages');
+        $this->set('messages', $msg . ($msg ? "\n" : "") . $message);
+        return $this;
+    }
+    
+    /**
+     * Sets Job status
+     *
+     * @param string $status
+     *
+     * @return $this
+     */
+    function setStatus($status) {
+        $this->set('status', $status);
+        return $this;
+    }
+	
 
     /**
      * Check if job is missed (there should already be newer scheduled job)
+     *
      * @param $id - (optional) ID of job to check. If null, then check currently loaded job
+     *
      * @return boolean - Is missed or not.
      */
     function isMissed($id=null){
@@ -79,6 +116,7 @@ class Model_Scheduler_Job extends \Model_Table {
 
     /**
      * Process / execute job
+     *
      * @return boolean - Was processing successful?
      */
     function process(){
@@ -94,23 +132,27 @@ class Model_Scheduler_Job extends \Model_Table {
             $task = $job->ref('scheduler_task_id');
             if(!$task['class'] || !$task['action']) throw $this->exception('Class or Action is not defined for Task');
         
+            // for debug
+            //$job->addMessage("Executing job #{$job->id} => call {$task['class']}->{$task['action']}()");
+            
             // try adding Object and running action (method)
+            // pass Job object itself as parameter like Object->Action(this Job)
             $obj = $this->add('\\'.$task['class']);
-            $obj->$task['action']();
+            $status = $obj->$task['action']($job);
 
-            //$job->set('messages',"Executing job #{$job->id} => call {$task['class']}->{$task['action']}()"); // for debug
-            $job->set('status','success');
+            // set status
+            $job->setStatus($status === false ? 'error' : 'success');
 
         }catch(\BaseException $e){
-            $job->set('messages',$e->getText()); // need getHTML(). Issue https://github.com/atk4/atk4/issues/185
-            $job->set('status','error');
+            $job->addMessage($e->getText()); // need getHTML(). Issue https://github.com/atk4/atk4/issues/185
+            $job->setStatus('error');
 
         }catch(\Exception $e){ // this still don't catch all exceptions, for example fatal ones :(
-            $job->set('messages',$e->getMessage());
-            $job->set('status','error');
+            $job->addMessage($e->getMessage());
+            $job->setStatus('error');
         }
 
-        // if ther was error, then echo out messages to console
+        // if there was error, then echo out messages to console
         if($job['status']=='error'){
             // rollback all DB transactions. This is needed to be able to save Job afterwards.
             while($this->api->db->inTransaction()) $this->api->db->rollBack();
