@@ -13,9 +13,10 @@ class Page_Admin extends \Page{
 
 	// Tasks page -------------------------------------------------------------
 	function page_tasks(){
+	
 		$m = $this->add(__NAMESPACE__ . '/Model_Scheduler_Task');
-		$c = $this->add('CRUD',array('allow_add'=>true,'allow_edit'=>true,'allow_del'=>true));
-		$c->setModel($m);
+		$c = $this->add('CRUD',array('allow_add'=>true,'allow_edit'=>true,'allow_del'=>true,'entity_name'=>'Task'));
+		$c->setModel($m, null, array('code', 'cron_expr', 'class', 'action', 'enabled', 'last_run', 'last_status', 'next_run', 'next_status')); // in grid show only most important fields
 		if($g = $c->grid) {
 			$g->addPaginator(15);
 
@@ -46,43 +47,58 @@ class Page_Admin extends \Page{
 
 	// Jobs page --------------------------------------------------------------
 	function page_jobs(){
+		
+		// add Grid
 		$m = $this->add(__NAMESPACE__ . '/Model_Scheduler_Job');
 		$g = $this->add('Grid');
 		$g->setModel($m);
         $g->addPaginator(15);
 
-        // add "Reschedule all" button
+        // add "Reschedule All" button
         $b = $g->addButton('Reschedule All');
         if($b->isClicked()){
+            // reschedule jobs
             $error = $m->ref('scheduler_task_id')->rescheduleAll();
+            $chains = array($g->js()->reload());
             if($error){
-                $chains = array(
-                    $g->js()->univ()->errorMessage($error)
-                );
+                $chains[] = $g->js()->univ()->errorMessage($error);
             } else {
-                $chains = array(
-                    $g->js()->reload(),
-                    $g->js()->univ()->successMessage('Jobs rescheduled')
-                );
+                $chains[] = $g->js()->univ()->successMessage('Jobs rescheduled');
             }
             $this->js(null,$chains)->execute();
         }
         
-        // Add "Delete" functionality
+        // add "Delete All" button
+        $b = $g->addButton('Delete All');
+        if($b->isClicked()){
+            // delete all jobs
+            $m->deleteAll();
+            // reschedule jobs
+            $error = $m->ref('scheduler_task_id')->rescheduleAll();
+            $chains = array($g->js()->reload());
+            if($error){
+                $chains[] = $g->js()->univ()->errorMessage($error);
+            } else {
+                $chains[] = $g->js()->univ()->successMessage('Jobs deleted and rescheduled');
+            }
+            $this->js(null,$chains)->execute();
+        }
+
+        // Add "Delete" column
         $g->addColumn('delete','Dzēst');
 
         // Replace formatters
         $g->setFormatter('status',__NAMESPACE__ . '/JobStatus');
         $g->setFormatter('messages',__NAMESPACE__ . '/JobMessages');
 	}
-    
+	
     // Job messages page ------------------------------------------------------
 	function page_jobs_messages(){
         // Load data
 		$m = $this->add(__NAMESPACE__ . '/Model_Scheduler_Job');
         $m->tryLoad($_GET['id']);
         // Create HTML element
-        $field = $this->add('HtmlElement')->setElement('pre');
+        $field = $this->add('View');
         $field->setHTML($m['messages']?:'No messages');
         // Enforce rendering only of this object
         $_GET['cut_object']=$field->name;

@@ -11,9 +11,12 @@ class Model_Scheduler_Task extends \Model_Table {
 		// Fields
 		$this->addField('code')->mandatory('Required')->sortable(true);
 		$this->addField('cron_expr')->mandatory('Required')->caption('Cron Expression');
-		$this->addField('if_missed')->enum(array('reschedule','run'))->defaultValue('reschedule')->mandatory('Required')->caption('If missed');
 		$this->addField('class')->mandatory('Required')->sortable(true);
 		$this->addField('action')->mandatory('Required')->sortable(true);
+		$this->addField('if_missed')->enum(array('reschedule', 'run'))
+            ->defaultValue('reschedule')
+            ->mandatory('Required')->caption('If missed')
+            ->display(array('form'=>'Radio'));
 		$this->addField('enabled')->type('boolean')->defaultValue(false)->mandatory('Required')->sortable(true);
 		
 		// hasMany relations
