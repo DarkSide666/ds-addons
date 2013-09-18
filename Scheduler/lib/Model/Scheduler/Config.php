@@ -1,7 +1,7 @@
 <?php
 namespace Scheduler;
 
-class Model_Scheduler_Config extends \Model_Table {
+class Model_Scheduler_Config extends \SQL_Model {
 	public $table = 'scheduler_config';
 
 	function init(){

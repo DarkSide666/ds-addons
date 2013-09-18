@@ -1,7 +1,7 @@
 <?php
 namespace Scheduler;
 
-class Model_Scheduler_Job extends \Model_Table {
+class Model_Scheduler_Job extends \SQL_Model {
 	public $table = 'scheduler_job';
 
 	/**
@@ -27,8 +27,7 @@ class Model_Scheduler_Job extends \Model_Table {
         $this->addField('messages')->type('text');
         
 		// Order
-		$this->setOrder('scheduled_dts', 'desc');
-		$this->setOrder('created_dts', 'desc');
+		$this->setOrder('scheduled_dts asc, created_dts asc, id asc');
 
 		// Hooks
 		$this->addHook('beforeSave', $this);
@@ -53,13 +52,51 @@ class Model_Scheduler_Job extends \Model_Table {
 	/**
 	 * Adds message to Jobs messages
 	 *
-	 * @param string $message
+	 * @param string|array $message
+	 * @param array $options Options for grid. Can use array('show_headers'=>false) for example
 	 *
 	 * @return $this
 	 */
-    function addMessage($message) {
-        $msg = $this->get('messages');
-        $this->set('messages', $msg . ($msg ? "\n" : "") . $message);
+    function addMessage($message, $options = null) {
+        if (!$message) return $this;
+        
+        if (is_string($message)) {
+            $message = nl2br($message);
+        
+        } elseif (is_array($message)) {
+            /*
+            $m = $this->add('Model');
+            $m->setSource('Array', $message);
+
+            $g = $this->add('Grid_Basic');
+            $g->setModel($m);
+            */
+            
+            /*
+            $m = $this->add('Model');
+            foreach($message[0] as $key=>$row) {
+                $m->addField($key);
+            }
+            $m->setSource('ArrayAssoc', $message);
+
+            $g = $this->add('Grid_Basic');
+            $g->setModel($m);
+            */
+
+            // this works only for associative arrays !!!
+            $g = $this->add('Grid_Basic', $options);
+            foreach($message[0] as $key=>$row) {
+                $g->addColumn('text', $key);
+            }
+            $g->setSource($message);
+            $out = $g->getHTML(true, false);
+
+            //var_dump($out);
+            $message = $out;
+        }
+        
+        $old = $this->get('messages');
+        $this->set('messages', $old . ($old ? "<br />" : "") . $message);
         return $this;
     }
     

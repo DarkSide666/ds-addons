@@ -1,7 +1,7 @@
 <?php
 namespace Scheduler;
 
-class Model_Scheduler_Task extends \Model_Table {
+class Model_Scheduler_Task extends \SQL_Model {
 	public $table = 'scheduler_task';
 	public $title_field = 'code';
 

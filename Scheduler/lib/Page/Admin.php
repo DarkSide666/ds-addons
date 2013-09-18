@@ -25,7 +25,7 @@ class Page_Admin extends \Page{
             $g->setFormatter('next_status',__NAMESPACE__ . '/JobStatus');
 
 			// add "Schedule now" button
-			$g->addColumn('button','schedule_now');
+			$g->addColumn('button', 'schedule_now', 'Schedule Now');
 			if($_GET['schedule_now']){
 				// Execute model action "scheduleNow"
 				$error = $m->scheduleNow($_GET['schedule_now']);
@@ -50,6 +50,7 @@ class Page_Admin extends \Page{
 		
 		// add Grid
 		$m = $this->add(__NAMESPACE__ . '/Model_Scheduler_Job');
+		$m->setOrder('scheduled_dts desc,created_dts desc,executed_dts desc,id desc');
 		$g = $this->add('Grid');
 		$g->setModel($m);
         $g->addPaginator(15);

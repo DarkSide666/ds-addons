@@ -25,7 +25,7 @@ CREATE  TABLE IF NOT EXISTS `scheduler_job` (
   `executed_dts` DATETIME NULL ,
   `finished_dts` DATETIME NULL ,
   `status` ENUM('pending','missed','running','success','error') NULL ,
-  `messages` TEXT NULL ,
+  `messages` LONGTEXT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_scheduler_job_scheduler_task1_idx` (`scheduler_task_id` ASC) ,
   CONSTRAINT `fk_scheduler_job_scheduler_task1`
