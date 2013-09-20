@@ -9,7 +9,7 @@ Dependencies:
 Usage:
 	Use it in Page like this:
 
-	Example with Grid:
+	Example:
         $ac = $b->add('Accordion/View_Accordion');
         
         $ac->addTab('First one', 'foo')
