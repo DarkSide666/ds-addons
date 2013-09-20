@@ -1,0 +1,26 @@
+This add-on will allow you to use JUI Accordion.
+
+Installation:
+    Check readme file of ds-addons pack.
+
+Dependencies:
+	jQuery UI
+
+Usage:
+	Use it in Page like this:
+
+	Example with Grid:
+        $ac = $b->add('Accordion/View_Accordion');
+        
+        $ac->addTab('First one', 'foo')
+            ->add('View_Warning')->set('First content here');
+        $ac->addTab('Second one', 'bar')
+            ->add('View_Info')->set('Second content');
+        
+        $ac->addTabURL('qwerty', 'Ajax one'); // remotely load page index/qwerty
+
+Known problems:
+    none
+    
+Author:
+	Imants Horsts
